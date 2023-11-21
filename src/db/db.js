@@ -1,15 +1,20 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/storage';
 import 'firebase/auth';
 import firebaseConfig from '../firebaseConfig';
+
 // import TodoCard from '../components/TodoCard/TodoCard';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 firebase.initializeApp(firebaseConfig);
-firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+firebase.auth().setPersistence(process.env.NODE_ENV === 'test' 
+    ? firebase.auth.Auth.Persistence.NONE 
+    : firebase.auth.Auth.Persistence.LOCAL);
 
+const storage = firebase.storage();
 const db = firebase.firestore();
-db.settings({ timestampsInSnapshots: true });
+db.settings({ timestampsInSnapshots: true,experimentalForceLongPolling: true });
 
 const TODO_CLC = 'todo-react-trial';
 
@@ -175,6 +180,7 @@ const fetchPoints = async (user) => {
 };
 
 export {
+    storage,
     provider,
     addTodoDB,
     markTodoDB,
