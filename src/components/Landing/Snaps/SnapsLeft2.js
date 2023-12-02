@@ -3,7 +3,7 @@ import Zoom from 'react-reveal/Zoom';
 function SnapsLeft2() {
     return (
         <div>
-            <div className="motion-safe:animate-fadeIn text-blue-900 mx-8 py-6">
+            <div className="motion-safe:animate-fadeIn home-header mx-8 py-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <Zoom>
                         <div className="my-auto">

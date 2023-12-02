@@ -57,7 +57,7 @@ function Dashboard({ user, isAuthorized }) {
                 showProfileFn={showProfileFn}
                 allTodos={allTodos}
             />
-            <div className="pl-0 md:pl-16 md:h-screen w-full md:pt-5">
+            <div className="home-header pl-0 md:pl-16 md:h-screen w-full md:pt-5">
                 <div className="md:h-1/2 md:flex md:flex-row w-full">
                     <div className="h-96 md:h-full px-3 w-screen md:w-1/2 flex flex-col">
                         <h1 className="text-3xl font-bold text-red-700">

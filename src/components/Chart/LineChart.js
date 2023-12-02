@@ -45,7 +45,9 @@ const getDateScore = (points) => {
 };
 function LineChart({ points }) {
     return (
+       
         <Line
+
             data={{
                 labels: getLabelDates(),
                 datasets: [

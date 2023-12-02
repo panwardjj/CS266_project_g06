@@ -27,10 +27,29 @@
   margin: 0;
   color: #fff;
 } */
+:root{
+  --body_background: white;
+  --body_color: black;
+  --link_color: navy;
+
+}
+
+[data-theme="dark"] {
+  --body_background: #282c34;
+  --body_color: white;
+  --link_color: cyan;
+}
+
+
+
 .gh:hover{
   fill: rgb(139,92,246);
 }
 
+.home-header{
+  background-color: var(--body_background);
+  color: var(--body_color);
+}
 .home-showcase::after {
   content: '';
   height: 100vh;
@@ -338,3 +357,4 @@ align-items: center;
 .bg-yellow-500:hover{
   background-color: rgb(217, 119, 6);
 }
+

@@ -14,6 +14,7 @@ function Navbar() {
 
                         <span className="ml-3 text-2xl xl:block lg:hidden">Kronos Tracker</span>
                     </div>
+                    
                     <div className="lg:w-2/5 mt-4 md:mt-0 inline-flex lg:justify-end ml-5 lg:ml-0">
                         <a href="https://github.com/arnabsen1729/Kronos-Tracker" target="_blank">
                             <svg aria-hidden="true" className="gh svg-inline--fa fa-github fa-w-16 fa-2x" fill="#ffffff" focusable="false" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" >
