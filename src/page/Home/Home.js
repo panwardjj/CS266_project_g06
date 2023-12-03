@@ -87,12 +87,12 @@ function Home() {
     const landingComp = () => {
         
         return (
-            <div className="home-header">
+            <div className="home-header" >
                 
                 <Navbar />
                 <DarkMode />
                 <Element name="Hero"></Element>
-                <div className="home-header h-auto">
+                <div className="home-header h-auto" data-testid='theme-display'>
                     <div className="home-header">
                         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
                             <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10">
