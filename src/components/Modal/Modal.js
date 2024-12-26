@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { Slider, TextField, Checkbox } from '@material-ui/core';
 
+import {storage} from "../../db/db";
+
 const dateString = () => {
     return new Date().toISOString();
 };
 
 export default function Modal({ priority, closeModalHandler, addTodoItem }) {
+    console.log('env ' ,process.env.NODE_ENV)
     const [todoContent, setTodoContent] = useState('');
     const [todoDuration, setTodoDuration] = useState(25);
     const [todoSchedule, setTodoSchedule] = useState(dateString());
     const [isSchedule, setIsSchedule] = useState(false);
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [error, setError] = useState('');
+    const [progress, setProgress] = useState(0);
 
     const todoContentChangeHanlder = (event) => {
         setTodoContent(() => event.target.value);
@@ -19,13 +25,68 @@ export default function Modal({ priority, closeModalHandler, addTodoItem }) {
         console.log(value);
     };
 
+    const handleFileChange = (event) => {
+        // Handle the file selection here
+        const selected = event.target.files[0];
+        // Check if a file is selected
+        if (selected) {
+            // Check file type
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            if (!allowedTypes.includes(selected.type)) {
+                setError('Please select a valid image file (jpg, jpeg, or png).');
+                setSelectedFile(null);
+                return;
+            }
+
+            // Check file size (in bytes)
+            const maxSize = 200 * 1024; // 200 KB
+            if (selected.size > maxSize) {
+                setError('File size exceeds the limit (200 KB).');
+                setSelectedFile(null);
+                return;
+            }
+
+            // File is valid, clear any previous error
+            setError('');
+            setSelectedFile(selected);
+            uploadFiles(selected);
+        }
+    };
+
+    const uploadFiles = (selected) => {
+        
+        const uploadTask = storage.ref(`files/${selected.name}`).put(selected);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            //
+            const prog = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            
+            setProgress(prog);
+            
+          },
+          (error) => console.log(error),
+          () => {
+            storage
+              .ref("files")
+              .child(selected.name)
+              .getDownloadURL()
+              .then((url) => {
+                console.log(url);
+              });
+          }
+        );
+      };
+
     return (
         <>
             <>
                 <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                     <div className="relative w-auto my-6 mx-auto max-w-3xl">
                         {/*content*/}
-                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                        <div className="home-header border-0 rounded-lg shadow-lg relative flex flex-col w-full outline-none focus:outline-none">
                             {/*header*/}
                             <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                                 <h3 className="text-3xl font-semibold">
@@ -110,6 +171,31 @@ export default function Modal({ priority, closeModalHandler, addTodoItem }) {
                                             />
                                         ) : null}
                                     </div>
+                                    <div>
+                                        <label className="block text-lg" htmlFor="fileInput">Choose a file:</label>
+                                        <input
+                                            type="file"
+                                            data-testid="fileUploadInput"
+                                            id="fileInput"
+                                            //accept=".jpg, .jpeg, .png" // Specify accepted file types if needed
+                                            onChange={handleFileChange}
+                                        />
+
+                                        {error && <p data-testid='errorText' style={{ color: 'red' }}>{error}</p>}
+
+                                        {selectedFile && (
+                                            
+                                            <div data-testid='successText'>
+                                                <p>Selected File: {selectedFile.name}</p>
+                                                <p>File Size: {selectedFile.size} bytes</p>
+                                                <p>File Type: {selectedFile.type}</p>
+                                                {/* You can display additional information about the selected file here */}
+                                            </div>
+                                            
+                                        )}
+                                         <h2 data-testid='uploadingDoneText'>Uploading done {progress}%</h2>
+                                        
+                                    </div>
                                 </form>
                             </div>
                             {/*footer*/}
@@ -132,7 +218,8 @@ export default function Modal({ priority, closeModalHandler, addTodoItem }) {
                                             priority,
                                             todoDuration,
                                             todoSchedule,
-                                            isSchedule
+                                            isSchedule,
+                                            selectedFile
                                         );
                                         setTodoContent('');
                                         closeModalHandler();
@@ -143,7 +230,7 @@ export default function Modal({ priority, closeModalHandler, addTodoItem }) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div >
                 <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
             </>
         </>

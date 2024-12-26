@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Element } from "react-scroll";
 import firebase from 'firebase/app';
@@ -15,6 +16,8 @@ import SnapsRight1 from '../../components/Landing/Snaps/SnapsRight1';
 import SnapsLeft2 from '../../components/Landing/Snaps/SnapsLeft2';
 import SnapsRight2 from '../../components/Landing/Snaps/SnapsRight2'
 import SnapsLeft3 from '../../components/Landing/Snaps/SnapsLeft3';
+import DarkMode from '../../components/DarkMode';
+
 function Home() {
     let [isAuthorized, setIsAuthorized] = useState(false);
     let [userDetails, setUserDetails] = useState(null);
@@ -82,18 +85,21 @@ function Home() {
     };
 
     const landingComp = () => {
+        
         return (
-            <div>
+            <div className="home-header" >
+                
                 <Navbar />
+                <DarkMode />
                 <Element name="Hero"></Element>
-                <div className="home-body h-auto">
-                    <div className="text-black text-xl bg-white body-font">
+                <div className="home-header h-auto" data-testid='theme-display'>
+                    <div className="home-header">
                         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
                             <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:mb-0 mb-10">
                                 <img className="object-cover object-center rounded" alt="hero" src={process.env.PUBLIC_URL + '/assets/kronos.png'}></img>
                             </div>
                             <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                                <div className="title-font sm:text-4xl text-4xl mb-4 font-medium text-black">Kronos Tracker</div>
+                                <div className="title-font sm:text-4xl text-4xl mb-4 font-medium ">Kronos Tracker</div>
                                 <p className="mb-8 leading-relaxed">A modern todo management tool that groups tasks on the basis of priority levels, comes with features of Google schedule, a timer with white noise for focussed work, awesome progress reports, and points for motivation and improved producitvity.</p>
                                 <div className="flex justify-center">
                                     {/* <button className="inline-flex text-white bg-purple-500 border-0 py-2 px-6 focus:outline-none hover:bg-purple-600 rounded text-lg">Button</button>
@@ -101,7 +107,7 @@ function Home() {
                                     <div className="flex flex-row justify-around ">
                                         <button
                                             onClick={logIn}
-                                            className="flex items-center justify-center border border-purple-900 hover:bg-purple-900 hover:text-white focus:outline-none text-purple-900 font-bold py-2 px-4 rounded w-60 mx-auto "
+                                            className="flex items-center justify-center border border-purple-900 hover:bg-purple-900 hover:text-white focus:outline-none  font-bold py-2 px-4 rounded w-60 mx-auto "
                                         >
                                             Continue with
                                 <img
@@ -130,6 +136,7 @@ function Home() {
                                         </button>
                                     </div>
                                 </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -137,7 +144,7 @@ function Home() {
                 <Element name="Features"></Element>
                 <Features />
                 <Element name="Snaps"></Element>
-                <div className="text-3xl font-medium title-font text-gray-900 w-full text-center mt-20">
+                <div className="text-3xl font-medium title-font w-full text-center mt-20">
                     Snaps
 
                 </div>

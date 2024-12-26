@@ -126,7 +126,7 @@ function Profile({ user }) {
     }, [allTodos]);
 
     return (
-        <div className="border rounded-lg bg-white m-auto border-gray-400 mt-3 lg:mt-36 w-full lg:w-2/3 h-auto grid grid-cols-1 lg:grid-cols-3">
+        <div className="home-header border rounded-lg  m-auto  mt-3 lg:mt-36 w-full lg:w-2/3 h-auto grid grid-cols-1 lg:grid-cols-3">
             <div className="mt-12 col-span-2">
                 <div className="flex justify-around">
                     <div className="">
@@ -144,7 +144,7 @@ function Profile({ user }) {
                         <div className="text-4xl font-bold">
                             {userDetails.name}
                         </div>
-                        <div className="text-2xl text-gray-700">
+                        <div className="text-2xl ">
                             {userDetails.email}
                         </div>
                     </div>
@@ -153,7 +153,7 @@ function Profile({ user }) {
                     <div className="w-1/3 px-2">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                             <FontAwesomeIcon icon={faMedal} size="2x" />
-                            <h2 className="title-font font-medium text-3xl text-gray-900">
+                            <h2 className="title-font font-medium text-3xl ">
                                 {getTotalPoints(points)}
                             </h2>
                             <p className="leading-relaxed">Points</p>
@@ -162,7 +162,7 @@ function Profile({ user }) {
                     <div className="w-1/3 px-2">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                             <FontAwesomeIcon icon={faFlagCheckered} size="2x" />
-                            <h2 className="title-font font-medium text-3xl text-gray-900">
+                            <h2 className="title-font font-medium text-3xl ">
                                 {getCompletedTodos(allTodos)}
                             </h2>
                             <p className="leading-relaxed">Completed Todos</p>
@@ -171,7 +171,7 @@ function Profile({ user }) {
                     <div className="w-1/3 px-2">
                         <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                             <FontAwesomeIcon icon={faClipboardList} size="2x" />
-                            <h2 className="title-font font-medium text-3xl text-gray-900">
+                            <h2 className="title-font font-medium text-3xl ">
                                 {getLeftTodos(allTodos)}
                             </h2>
                             <p className="leading-relaxed">Left Todos</p>

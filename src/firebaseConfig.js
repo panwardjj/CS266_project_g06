@@ -1,10 +1,16 @@
+import firebase from "firebase/app"
+import "firebase/storage";
 const firebaseConfig = {
-    apiKey: 'AIzaSyC32KNYFj_GjSEQppSE9nDrgc1QZuVo3X8',
-    authDomain: 'tidy-up-32957.firebaseapp.com',
-    projectId: 'tidy-up-32957',
-    storageBucket: 'tidy-up-32957.appspot.com',
-    messagingSenderId: '237484609062',
-    appId: '1:237484609062:web:2c8ccca0b1a7c32a0a20e7',
+  apiKey: "AIzaSyBrUUNGbGfezB2EYqvf3Z2GvIRUA5w2op4",
+  authDomain: "uploading-2.firebaseapp.com",
+  projectId: "uploading-2",
+  storageBucket: "uploading-2.appspot.com",
+  messagingSenderId: "179867338789",
+  appId: "1:179867338789:web:9b1b9e3671eeb1091397cc"
 };
 
-export default firebaseConfig;
+
+// firebase.initializeApp(firebaseConfig);
+// const storage = firebase.storage();
+
+export { firebaseConfig as default};

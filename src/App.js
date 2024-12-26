@@ -6,11 +6,15 @@ import Home from './page/Home/Home';
 
 function App() {
     return (
+        
         <Router>
-            <Switch>
-                <Route path="/" exact component={Home}></Route>
-            </Switch>
+            
+                    <Switch>
+                
+                    < Route path="/" exact component={Home}></Route>
+                    </Switch>
             {/* <Dashboard /> */}
+           
         </Router>
     );
 }
